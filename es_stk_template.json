@@ -1,0 +1,66 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "es_stk_analyzer": {
+          "type": "custom",
+          "filter": [ "path_hierarchy_pattern_filter", "lowercase" ],
+          "tokenizer": "whitespace"
+        },
+        "es_stk_search_analyzer": {
+          "type": "custom",
+          "filter": [ "lowercase" ],
+          "tokenizer": "whitespace"
+        },
+        "es_stk_search_quote_analyzer": {
+          "type": "custom",
+          "filter": [ "lowercase" ],
+          "tokenizer": "whitespace"
+        }
+      },
+      "filter" : {
+        "path_hierarchy_pattern_filter": {
+          "type" : "pattern_capture",
+          "preserve_original": true,
+          "patterns": [
+            "((?:[^\\\\]*\\\\)*)(.*)",
+            "((?:[^/]*/)*)(.*)"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic_templates": [
+     {
+       "integers": {
+         "match_mapping_type": "long",
+         "mapping": {
+           "type": "integer"
+         }
+       }
+     },
+     {
+       "strings": {
+         "match_mapping_type": "string",
+         "mapping": {
+           "type": "text",
+           "fields": {
+             "keyword": {
+              "type": "keyword"
+            },
+            "stk": {
+              "type": "text",
+              "analyzer": "es_stk_analyzer", 
+              "search_analyzer": "es_stk_search_analyzer", 
+              "search_quote_analyzer": "es_stk_search_quote_analyzer" 
+            }
+          }
+         }
+       }
+     }
+   ],
+   "properties": {
+   }
+  }
+}
