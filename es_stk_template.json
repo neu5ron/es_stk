@@ -33,14 +33,6 @@
   "mappings": {
     "dynamic_templates": [
      {
-       "integers": {
-         "match_mapping_type": "long",
-         "mapping": {
-           "type": "integer"
-         }
-       }
-     },
-     {
        "strings": {
          "match_mapping_type": "string",
          "mapping": {
