@@ -2,17 +2,17 @@
   "settings": {
     "analysis": {
       "analyzer": {
-        "es_security_analyzer": {
+        "es_stk_analyzer": {
           "type": "custom",
           "filter": [ "path_hierarchy_pattern_filter", "lowercase" ],
           "tokenizer": "whitespace"
         },
-        "es_security_search_analyzer": {
+        "es_stk_search_analyzer": {
           "type": "custom",
           "filter": [ "lowercase" ],
           "tokenizer": "whitespace"
         },
-        "es_security_search_quote_analyzer": {
+        "es_stk_search_quote_analyzer": {
           "type": "custom",
           "filter": [ "lowercase" ],
           "tokenizer": "whitespace"
@@ -43,9 +43,9 @@
             },
             "security": {
               "type": "text",
-              "analyzer": "es_security_analyzer", 
-              "search_analyzer": "es_security_search_analyzer", 
-              "search_quote_analyzer": "es_security_search_quote_analyzer" 
+              "analyzer": "es_stk_analyzer", 
+              "search_analyzer": "es_stk_search_analyzer", 
+              "search_quote_analyzer": "es_stk_search_quote_analyzer" 
             }
           }
          }
