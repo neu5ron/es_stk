@@ -1,57 +1,57 @@
-{
-  "version": 2020122801,
-  "order": 50,
-  "settings": {
-    "analysis": {
-      "analyzer": {
-        "es_stk_analyzer": {
-          "type": "custom",
-          "filter": [ "path_hierarchy_pattern_filter", "lowercase" ],
-          "tokenizer": "whitespace"
+  {
+    "version": 2020122801,
+    "order": 50,
+    "settings": {
+      "analysis": {
+        "analyzer": {
+          "es_stk_analyzer": {
+            "type": "custom",
+            "filter": [ "path_hierarchy_pattern_filter", "lowercase" ],
+            "tokenizer": "keyword"
+          },
+          "es_stk_search_analyzer": {
+            "type": "custom",
+            "filter": [ "lowercase" ],
+            "tokenizer": "keyword"
+          },
+          "es_stk_search_quote_analyzer": {
+            "type": "custom",
+            "filter": [ "lowercase" ],
+            "tokenizer": "keyword"
+          }
         },
-        "es_stk_search_analyzer": {
-          "type": "custom",
-          "filter": [ "lowercase" ],
-          "tokenizer": "whitespace"
-        },
-        "es_stk_search_quote_analyzer": {
-          "type": "custom",
-          "filter": [ "lowercase" ],
-          "tokenizer": "whitespace"
-        }
-      },
-      "filter" : {
-        "path_hierarchy_pattern_filter": {
-          "type" : "pattern_capture",
-          "preserve_original": true,
-          "patterns": [
-            "((?:[^\\\\]*\\\\)*)(.*)",
-            "((?:[^/]*/)*)(.*)"
-          ]
+        "filter" : {
+          "path_hierarchy_pattern_filter": {
+            "type" : "pattern_capture",
+            "preserve_original": true,
+            "patterns": [
+              "((?:[^\\\\]*\\\\)*)(.*)",
+              "((?:[^/]*/)*)(.*)"
+            ]
+          }
         }
       }
-    }
-  },
-  "mappings": {
-    "dynamic_templates": [
-      {
-        "strings": {
-          "match_mapping_type": "string",
-          "mapping": {
-            "type": "keyword",
-            "ignore_above": 32765,
-            "fields": {
-              "text": {
-                "type": "text",
-                "analyzer": "es_stk_analyzer", 
-                "search_analyzer": "es_stk_search_analyzer", 
-                "search_quote_analyzer": "es_stk_search_quote_analyzer" 
+    },
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "strings": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword",
+              "ignore_above": 32765,
+              "fields": {
+                "text": {
+                  "type": "text",
+                  "analyzer": "es_stk_analyzer", 
+                  "search_analyzer": "es_stk_search_analyzer", 
+                  "search_quote_analyzer": "es_stk_search_quote_analyzer" 
+                }
               }
             }
           }
         }
-      }
-   ],
-   "properties": { }
+    ],
+    "properties": { }
+    }
   }
-}
