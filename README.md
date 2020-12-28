@@ -81,6 +81,7 @@ Example output:
  # Housekeeping
  
  ## #TODO:
+ - look into https://www.elastic.co/guide/en/elasticsearch/reference/7.10/index-prefixes.html#index-prefixes
  - tokenize on 2 or more symbols
  - exclude/remove tokenization of single forward slash or backslash (need to just add negate regex to the regex token capture)
   
