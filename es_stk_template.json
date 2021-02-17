@@ -1,57 +1,57 @@
-  {
-    "version": 2020122801,
-    "order": 50,
-    "settings": {
-      "analysis": {
-        "analyzer": {
-          "es_stk_analyzer": {
-            "type": "custom",
-            "filter": [ "path_hierarchy_pattern_filter", "lowercase" ],
-            "tokenizer": "keyword"
-          },
-          "es_stk_search_analyzer": {
-            "type": "custom",
-            "filter": [ "lowercase" ],
-            "tokenizer": "keyword"
-          },
-          "es_stk_search_quote_analyzer": {
-            "type": "custom",
-            "filter": [ "lowercase" ],
-            "tokenizer": "keyword"
-          }
-        },
-        "filter" : {
-          "path_hierarchy_pattern_filter": {
-            "type" : "pattern_capture",
-            "preserve_original": true,
-            "patterns": [
-              "((?:[^\\\\]*\\\\)*)(.*)",
-              "((?:[^/]*/)*)(.*)"
-            ]
-          }
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "es_stk_analyzer": {
+          "type": "custom",
+          "char_filter": [ "whitespace_no_way" ],
+          "filter": [ "lowercase", "trim" ],
+          "tokenizer": "keyword"
+        }
+      },
+      "char_filter": {
+        "whitespace_no_way": {
+          "type": "pattern_replace",
+          "pattern": "(\\s)+",
+          "replacement": "$1"
+        }
+      },  
+      "filter" : {
+        "path_hierarchy_pattern_filter": {
+          "type" : "pattern_capture",
+          "preserve_original": true,
+          "patterns": [
+            "((?:[^\\\\]*\\\\)*)(.*)",
+            "((?:[^/]*/)*)(.*)"
+          ]
+        }
+      },  
+      "tokenizer": {
+        "path_tokenizer": {
+          "type": "path_hierarchy",
+          "delimiter": "\\"
         }
       }
-    },
-    "mappings": {
-      "dynamic_templates": [
-        {
-          "strings": {
-            "match_mapping_type": "string",
-            "mapping": {
-              "type": "keyword",
-              "ignore_above": 32765,
-              "fields": {
-                "text": {
-                  "type": "text",
-                  "analyzer": "es_stk_analyzer", 
-                  "search_analyzer": "es_stk_search_analyzer", 
-                  "search_quote_analyzer": "es_stk_search_quote_analyzer" 
-                }
+    }
+  },
+  "mappings": {
+    "dynamic_templates": [
+      {
+        "strings": {
+          "match_mapping_type": "string",
+          "mapping": {
+            "type": "keyword",
+            "ignore_above": 32765,
+            "fields": {
+              "text": {
+                "type": "text",
+                "analyzer": "es_stk_analyzer"
               }
             }
           }
         }
-    ],
-    "properties": { }
-    }
+      }
+  ],
+  "properties": { }
   }
+}

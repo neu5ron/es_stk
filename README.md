@@ -2,13 +2,10 @@
 
 This is a custom elasticsearch analyzer built with security logging use cases in mind.
 
-The analyzer will lowercase the values and then [tokenize](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html) values based upon
-- `whitespace`
-- `\ `
-- `/`
+The analyzer will lowercase the values and remove extra whitespaces. More importantly it retains the functionality that makes elasticsearch a useful string searching tool besides just using it as a "contains" query database. For example this still allows you to do fuzzy/levenshtein distance queries.
  
  
- Problems this solves are well noted in this [blog](https://socprime.com/blog/elastic-for-security-analysts-part-1-searching-strings/).
+Problems this helps alleviate are well noted in this [blog](https://socprime.com/blog/elastic-for-security-analysts-part-1-searching-strings/).
  
  
  ## Example and Testing
@@ -24,7 +21,7 @@ The analyzer will lowercase the values and then [tokenize](https://www.elastic.c
 POST /es_stk_test/_analyze
 {
   "analyzer": "es_stk_analyzer",
-  "text": """C:\Users\test\example_binary.exe -exec bypass ^t^e^s^t"""
+  "text": """C:\Users\test\rundll32.exe   -exec       a bypass ^T^e^S^t  """
 }
 ```
 Example output:
@@ -32,46 +29,11 @@ Example output:
 {
   "tokens" : [
     {
-      "token" : """c:\users\test\example_binary.exe""",
+      "token" : """c:\users\test\rundll32.exe -exec a bypass ^t^e^s^t""",
       "start_offset" : 0,
-      "end_offset" : 32,
+      "end_offset" : 60,
       "type" : "word",
       "position" : 0
-    },
-    {
-      "token" : """c:\users\test\""",
-      "start_offset" : 0,
-      "end_offset" : 32,
-      "type" : "word",
-      "position" : 0
-    },
-    {
-      "token" : "example_binary.exe",
-      "start_offset" : 0,
-      "end_offset" : 32,
-      "type" : "word",
-      "position" : 0
-    },
-    {
-      "token" : "-exec",
-      "start_offset" : 33,
-      "end_offset" : 38,
-      "type" : "word",
-      "position" : 1
-    },
-    {
-      "token" : "bypass",
-      "start_offset" : 39,
-      "end_offset" : 45,
-      "type" : "word",
-      "position" : 2
-    },
-    {
-      "token" : "^t^e^s^t",
-      "start_offset" : 46,
-      "end_offset" : 54,
-      "type" : "word",
-      "position" : 3
     }
   ]
 }
@@ -81,9 +43,7 @@ Example output:
  # Housekeeping
  
  ## #TODO:
- - look into https://www.elastic.co/guide/en/elasticsearch/reference/7.10/index-prefixes.html#index-prefixes
- - tokenize on 2 or more symbols
- - exclude/remove tokenization of single forward slash or backslash (need to just add negate regex to the regex token capture)
+- Leave feedback if you are using this!
   
  ## Known Issues
  N/A
