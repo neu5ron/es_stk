@@ -2,6 +2,8 @@
 
 This is a custom elasticsearch analyzer built with security logging use cases in mind.
 
+Information about the usefulness/necessity of a custom analyzer **even when running Elastic Common Schema (ECS)** can be found [here](https://github.com/elastic/ecs/issues/1837).
+
 The analyzer will lowercase the values and remove extra whitespaces. More importantly it retains the functionality that makes elasticsearch a useful string searching tool besides just using it as a "contains" query database. For example this still allows you to do fuzzy/levenshtein distance queries.
  
  
