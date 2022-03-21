@@ -1,7 +1,7 @@
 {
   "order" : 100,
   "index_patterns": [
-    "*ReplaceYourIndexPatternHere*"
+    "*ReplaceWithYourIndexPatternHere*"
   ],
   "version": 2022032101,
   "settings": {
