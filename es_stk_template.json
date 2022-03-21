@@ -3,7 +3,7 @@
   "index_patterns": [
     "*ReplaceWithYourIndexPatternHere*"
   ],
-  "version": 2022032101,
+  "version": 2022032102,
   "settings": {
     "analysis": {
       "analyzer": {
@@ -50,7 +50,9 @@
             "fields": {
               "text": {
                 "type": "text",
-                "analyzer": "es_stk_analyzer"
+                "analyzer": "es_stk_analyzer",
+                "index_options": "docs",
+                "norms": "false"
               }
             }
           }
