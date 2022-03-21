@@ -1,4 +1,9 @@
 {
+  "order" : 100,
+  "index_patterns": [
+    "*ReplaceYourIndexPatternHere*"
+  ],
+  "version": 2022032101,
   "settings": {
     "analysis": {
       "analyzer": {
