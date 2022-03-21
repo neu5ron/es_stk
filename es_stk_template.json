@@ -3,7 +3,7 @@
   "index_patterns": [
     "*ReplaceWithYourIndexPatternHere*"
   ],
-  "version": 2022032101,
+  "version": 2022032102,
   "settings": {
     "analysis": {
       "analyzer": {
