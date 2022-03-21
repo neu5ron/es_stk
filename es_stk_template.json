@@ -50,7 +50,9 @@
             "fields": {
               "text": {
                 "type": "text",
-                "analyzer": "es_stk_analyzer"
+                "analyzer": "es_stk_analyzer",
+                "index_options": "docs",
+                "norms": "false"
               }
             }
           }
