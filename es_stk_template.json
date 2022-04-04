@@ -10,7 +10,7 @@
         "es_stk_analyzer": {
           "type": "custom",
           "char_filter": [ "whitespace_no_way" ],
-          "filter": [ "lowercase", "trim" ],
+          "filter": [ "trim", "lowercase" ],
           "tokenizer": "keyword"
         }
       },
