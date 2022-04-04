@@ -1,16 +1,17 @@
 {
   "order" : 100,
   "index_patterns": [
-    "*ReplaceWithYourIndexPatternHere*"
+    "*ReplaceWithYourIndexPatternHere*",
+    "es_stk_test*"
   ],
-  "version": 2022032102,
+  "version": 2022040401,
   "settings": {
     "analysis": {
       "analyzer": {
         "es_stk_analyzer": {
           "type": "custom",
           "char_filter": [ "whitespace_no_way" ],
-          "filter": [ "trim", "lowercase" ],
+          "filter": [ "trim", "lowercase", "max_toxen_truncate" ],
           "tokenizer": "keyword"
         }
       },
@@ -22,6 +23,10 @@
         }
       },  
       "filter" : {
+        "max_toxen_truncate": {
+          "type": "truncate",
+          "length": 32766
+        },
         "path_hierarchy_pattern_filter": {
           "type" : "pattern_capture",
           "preserve_original": true,
