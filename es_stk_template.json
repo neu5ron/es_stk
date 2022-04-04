@@ -11,7 +11,7 @@
         "es_stk_analyzer": {
           "type": "custom",
           "char_filter": [ "whitespace_no_way" ],
-          "filter": [ "trim", "lowercase", "max_toxen_truncate" ],
+          "filter": [ "trim", "lowercase", "max_token_truncate" ],
           "tokenizer": "keyword"
         }
       },
@@ -23,7 +23,7 @@
         }
       },  
       "filter" : {
-        "max_toxen_truncate": {
+        "max_token_truncate": {
           "type": "truncate",
           "length": 32766
         },
