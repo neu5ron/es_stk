@@ -53,7 +53,7 @@
             "type": "keyword",
             "ignore_above": 32765,
             "fields": {
-              "text": {
+              "security": {
                 "type": "text",
                 "analyzer": "es_stk_analyzer",
                 "index_options": "docs",
