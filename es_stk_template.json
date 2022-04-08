@@ -4,7 +4,7 @@
     "*ReplaceWithYourIndexPatternHere*",
     "es_stk_test*"
   ],
-  "version": 2022040401,
+  "version": 2022040802,
   "settings": {
     "analysis": {
       "analyzer": {
